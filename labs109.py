@@ -1,3 +1,4 @@
+import re
 
 def ryerson_letter_grade(pct):
     if pct < 50: return 'F'
@@ -38,5 +39,15 @@ def double_until_all_digits(n, giveup = 1000):
     return -1
 
 
+def caps_lock_stuck(text):
+    # FAILS
+    split_text = re.split('aA', text)
+    for i, t in enumerate(split_text):
+        if i % 2 == 1:
+            split_text[i] = t.swapcase()
+    return ''.join(split_text)
+
 if __name__ == "__main__":
-    pass
+    print(caps_lock_stuck("Why are you asking me that?"))
+    print(caps_lock_stuck("Madder than Mad Brian of Madcastle"))
+    print(caps_lock_stuck("Why āre you ăsking me thąt?"))

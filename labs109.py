@@ -18,5 +18,12 @@ def ryerson_letter_grade(pct):
     return 'A+'
 
 
+def is_ascending(items):
+    items = list(items)     # tester is feeding tuples, not lists
+    if items == sorted(items) and len(items) == len(set(items)):
+        return True
+    return False
+
+
 if __name__ == "__main__":
     pass

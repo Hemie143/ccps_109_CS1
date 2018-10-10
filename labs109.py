@@ -25,5 +25,18 @@ def is_ascending(items):
     return False
 
 
+def double_until_all_digits(n, giveup = 1000):
+    all_digits = '0123456789'
+    found = False
+    for i in range(giveup+1):
+        if ''.join(sorted(set(str(n)))) == all_digits:
+            found = True
+            break
+        n *= 2
+    if found:
+        return i
+    return -1
+
+
 if __name__ == "__main__":
     pass

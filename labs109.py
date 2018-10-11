@@ -1,4 +1,5 @@
 import re
+from functools import reduce
 
 def ryerson_letter_grade(pct):
     if pct < 50: return 'F'
@@ -41,13 +42,23 @@ def double_until_all_digits(n, giveup = 1000):
 
 def caps_lock_stuck(text):
     # FAILS
-    split_text = re.split('aA', text)
+    split_text = re.split('a|A', text)
     for i, t in enumerate(split_text):
         if i % 2 == 1:
             split_text[i] = t.swapcase()
     return ''.join(split_text)
 
+
+def scrabble_value(word, multipliers):
+    _scrabble = {
+        "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4,
+        "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3,
+        "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8,
+        "y": 4, "z": 10
+    }
+    return sum([reduce(lambda c, m: c * m, x) for x in zip([_scrabble[c] for c in word], multipliers)])
+
 if __name__ == "__main__":
-    print(caps_lock_stuck("Why are you asking me that?"))
-    print(caps_lock_stuck("Madder than Mad Brian of Madcastle"))
-    print(caps_lock_stuck("Why āre you ăsking me thąt?"))
+    print(caps_lock_stuck('CHAPTER'))
+    print(scrabble_value("hello", [1, 1, 1, 1, 1]))
+    print(scrabble_value("world", [1, 3, 1, 1, 1]))

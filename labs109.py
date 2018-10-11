@@ -58,7 +58,20 @@ def scrabble_value(word, multipliers):
     }
     return sum([reduce(lambda c, m: c * m, x) for x in zip([_scrabble[c] for c in word], multipliers)])
 
+def create_zigzag(rows, cols, start = 1):
+    result = []
+    for r in range(rows):
+        row = list(range(start + r * cols, start + (r + 1) * cols))
+        if r % 2 == 1:
+            row = row[::-1]
+        result.append(row)
+    return result
+
+
 if __name__ == "__main__":
     print(caps_lock_stuck('CHAPTER'))
     print(scrabble_value("hello", [1, 1, 1, 1, 1]))
     print(scrabble_value("world", [1, 3, 1, 1, 1]))
+    print(create_zigzag(3, 5))
+    print(create_zigzag(10, 1))
+    print(create_zigzag(4, 2))

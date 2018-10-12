@@ -85,6 +85,22 @@ def contains_bingo(card, numbers, centerfree=False):
     return False
 
 
+def group_equal(items):
+    result = []
+    current = []
+    while len(items) > 0:
+        x = items.pop(0)
+        if x in current:
+            current.append(x)
+        else:
+            if current :
+                result.append(current)
+            current = [x]
+    if current:
+        result.append(current)
+    return result
+
+
 if __name__ == "__main__":
     # print(caps_lock_stuck('CHAPTER'))
     # print(scrabble_value("hello", [1, 1, 1, 1, 1]))
@@ -93,6 +109,7 @@ if __name__ == "__main__":
     # print(create_zigzag(10, 1))
     # print(create_zigzag(4, 2))
 
+    '''
     print(contains_bingo([
             [38, 93, 42, 47, 15], [90, 13, 41, 10, 56], [54, 23, 87, 70, 6], [86, 43, 48, 40, 92], [71, 24, 44, 1, 34]
                         ],
@@ -110,3 +127,8 @@ if __name__ == "__main__":
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 31, 33,
          35, 36, 37, 38, 39, 41, 42, 44, 45, 46, 47, 48, 49, 51, 52, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64,
          65, 68, 70, 71, 73, 75, 76, 77, 79, 81, 82, 84, 85, 86, 87, 88, 89, 90, 91, 94, 98]))
+    '''
+    print(group_equal([1, 1, 4, 4, 4, "hello", "hello", 4]))
+    print(group_equal([1, 2, 3, 4]))
+    print(group_equal([1]))
+    print(group_equal([]))

@@ -100,6 +100,18 @@ def group_equal(items):
         result.append(current)
     return result
 
+def recaman(n):
+    def rec(seen, n, previous=0):
+        for i in range(1, n+1):
+            nxt = previous - i
+            if nxt > 0 and nxt not in seen:
+                an = nxt
+            else:
+                an = previous + i
+            seen.add(an)
+            previous = an
+            yield an
+    return list(rec(set(), n))
 
 if __name__ == "__main__":
     # print(caps_lock_stuck('CHAPTER'))
@@ -128,7 +140,9 @@ if __name__ == "__main__":
          35, 36, 37, 38, 39, 41, 42, 44, 45, 46, 47, 48, 49, 51, 52, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64,
          65, 68, 70, 71, 73, 75, 76, 77, 79, 81, 82, 84, 85, 86, 87, 88, 89, 90, 91, 94, 98]))
     '''
-    print(group_equal([1, 1, 4, 4, 4, "hello", "hello", 4]))
-    print(group_equal([1, 2, 3, 4]))
-    print(group_equal([1]))
-    print(group_equal([]))
+    # print(group_equal([1, 1, 4, 4, 4, "hello", "hello", 4]))
+    # print(group_equal([1, 2, 3, 4]))
+    # print(group_equal([1]))
+    # print(group_equal([]))
+    print(recaman(10))
+    print(recaman(1000000))

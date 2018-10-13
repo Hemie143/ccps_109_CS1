@@ -1,5 +1,6 @@
 import re
 from functools import reduce
+from statistics import median
 
 
 def ryerson_letter_grade(pct):
@@ -113,6 +114,17 @@ def recaman(n):
             yield an
     return list(rec(set(), n))
 
+def running_median_of_three(items):
+    result = []
+    for i, v in enumerate(items):
+        if i < 2:
+            result.append(v)
+        else:
+            temp = items[i-2:i+1]
+            result.append(int(median(temp)))
+    return result
+
+
 if __name__ == "__main__":
     # print(caps_lock_stuck('CHAPTER'))
     # print(scrabble_value("hello", [1, 1, 1, 1, 1]))
@@ -144,5 +156,9 @@ if __name__ == "__main__":
     # print(group_equal([1, 2, 3, 4]))
     # print(group_equal([1]))
     # print(group_equal([]))
-    print(recaman(10))
-    print(recaman(1000000))
+    # print(recaman(10))
+    # print(recaman(1000000))
+    print(running_median_of_three([5, 2, 9, 1, 7, 4, 6, 3, 8]))
+    print(running_median_of_three([1, 2, 3, 4, 5, 6, 7]))
+    print(running_median_of_three([42]))
+
